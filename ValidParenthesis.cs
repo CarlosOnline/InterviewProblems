@@ -8,9 +8,11 @@ internal class ValidParenthesis
         {
             { "()", true },
             { "([])", true },
+            { "[()[]{}[()[]{}[[()[]{}()[]{}]()[]{}]()[]{}]()[]{}]", true },
+            { "[[[[]]]]", true},
             { "[[[[]]]])", false },
-            { "))", false },
             { "[ [[ [] ]] ])", false },
+            { "))", false },
         };
 
         foreach (var testCase in testCases)
@@ -18,6 +20,13 @@ internal class ValidParenthesis
             var result = IsValidParenthesis(testCase.Key);
             var passed = result == testCase.Value ? "PASS" : "FAIL";
             Console.WriteLine($"{passed} Simple: {result} for {testCase.Key}");
+        }
+
+        foreach (var testCase in testCases)
+        {
+            var result = IsValidParenthesisOptimized(testCase.Key);
+            var passed = result == testCase.Value ? "PASS" : "FAIL";
+            Console.WriteLine($"{passed} Optimized: {result} for {testCase.Key}");
         }
 
         foreach (var testCase in testCases)
@@ -64,6 +73,9 @@ internal class ValidParenthesis
                         return false;
                     }
                     break;
+
+                default:
+                    return false;
             }
         }
 
@@ -85,6 +97,47 @@ internal class ValidParenthesis
 
             return true;
         }
+    }
+
+    private static bool IsValidParenthesisOptimized(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return false;
+
+        var stack = new Stack<char>();
+
+        foreach (var ch in input)
+        {
+            switch (ch)
+            {
+                case '(':
+                    stack.Push(')');
+                    break;
+                case '[':
+                    stack.Push(']');
+                    break;
+                case '{':
+                    stack.Push('}');
+                    break;
+
+                default:
+                    {
+                        if (stack.Count == 0)
+                        {
+                            return false;
+                        }
+
+                        var popped = stack.Pop();
+                        if (popped != ch)
+                        {
+                            Console.WriteLine($"Invalid open brace: {popped} != {ch} for {input}");
+                            return false;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        return true;
     }
 
     private static bool IsValidParenthesisUsingReplace(string input)
