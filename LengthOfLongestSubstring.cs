@@ -1,57 +1,101 @@
-﻿namespace InterviewProblems
+﻿namespace InterviewProblems;
+
+/// <summary>
+/// 3. Longest Substring Without Repeating Characters
+/// Given a string s, find the length of the longest substring without repeating characters.
+/// https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=featured-list&envId=top-google-questions
+/// </summary>
+internal class LengthOfLongestSubstring
 {
-    /// <summary>
-    /// 3. Longest Substring Without Repeating Characters
-    /// Given a string s, find the length of the longest substring without repeating characters.
-    /// https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=featured-list&envId=top-google-questions
-    /// </summary>
-    internal class LengthOfLongestSubstring
+    public static void RunProblem()
     {
-        public static void RunProblem()
+        var testCases = new List<string>
         {
-            var testCases = new List<string>
-            {
-                "abcabcbb",
-                "pwwkew",
-                "bbbbb"
-            };
+            "pwwkew",
+            "abcabcbb",
+            "bbbbb"
+        };
 
-            foreach (var testCase in testCases)
+        foreach (var testCase in testCases)
+        {
+            Calculate(testCase);
+        }
+
+        foreach (var testCase in testCases)
+        {
+            var result = lengthOfLongestSubstring(testCase);
+            Console.WriteLine($"Input: {testCase} Longest: {result:N0}");
+        }
+    }
+
+    private static int Calculate(string input)
+    {
+        var longestSubstring = string.Empty;
+
+        for (var start = 0; start < input.Length; start++)
+        {
+            var seen = new HashSet<char>();
+            var currentCh = input[start];
+            seen.Add(currentCh);
+
+            var pos = start + 1;
+            for (; pos < input.Length; pos++)
             {
-                Calculate(testCase);
+                currentCh = input[pos];
+                if (seen.Contains(currentCh))
+                {
+                    break;
+                }
+                seen.Add(currentCh);
+            }
+
+            var length = pos - start;
+            if (length > longestSubstring.Length)
+            {
+                longestSubstring = input.Substring(start, length);
             }
         }
 
-        private static int Calculate(string input)
+        Console.WriteLine($"Input: {input} Longest: {longestSubstring.Length:N0} {longestSubstring}");
+        return longestSubstring.Length;
+    }
+
+    private static int lengthOfLongestSubstring(string input)
+    {
+        if (input.Length == 0)
         {
-            var longestSubstring = string.Empty;
+            return 0;
+        }
 
-            for (var start = 0; start < input.Length; start++)
+        int ans = 1;
+        var set = new HashSet<char>();
+        int left = 0, right = 0;
+        var chLeft = input[left];
+        var chRight = input[right];
+        while (right < input.Length)
+        {
+            if (set.Contains(input[right]))
             {
-                var seen = new Dictionary<char, bool>();
-                var currentCh = input[start];
-                seen[currentCh] = true;
-
-                var pos = start + 1;
-                for (; pos < input.Length; pos++)
+                set.Remove(input[left]);
+                left++;
+                if (left < input.Length)
                 {
-                    currentCh = input[pos];
-                    if (seen.TryGetValue(currentCh, out var exists) && exists)
-                    {
-                        break;
-                    }
-                    seen[currentCh] = true;
-                }
-
-                var length = pos - start;
-                if (length > longestSubstring.Length)
-                {
-                    longestSubstring = input.Substring(start, length);
+                    chLeft = input[left];
                 }
             }
-
-            Console.WriteLine($"Input: {input} Longest: {longestSubstring.Length:N0} {longestSubstring}");
-            return longestSubstring.Length;
+            else
+            {
+                set.Add(input[right]);
+                right++;
+                if (right < input.Length)
+                {
+                    chRight = input[right];
+                }
+                int sz = set.Count;
+                ans = Math.Max(ans, sz);
+            }
         }
+
+        return ans;
     }
 }
