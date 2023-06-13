@@ -29,20 +29,25 @@ internal class SumOfTwoValues
             return null;
         }
 
-        var digits = new Dictionary<int, int>();
+        var history = new Dictionary<int, int>();
 
         for (var idx = 0; idx < input.Length; idx++)
         {
             var current = input[idx];
+
+            // The current digit needs a specific value for it add to sum.
+            // Check if needed digit already seen.
+            // Later on may see the needed digit, which will need the current digit
+            // which has already been added to the history.
             var needed = sum - current;
 
-            if (digits.ContainsKey(needed))
+            if (history.ContainsKey(needed))
             {
                 // return new Tuple<int, int>(digits[needed], idx);
                 return new Tuple<int, int>(needed, current);
             }
 
-            digits.Add(current, idx);
+            history.Add(current, idx);
         }
 
         return null;
