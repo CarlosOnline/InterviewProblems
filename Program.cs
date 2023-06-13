@@ -1,8 +1,12 @@
 ﻿using InterviewProblems;
 
-const string Test = "ValidParenthesis";
+const string Test = "SumOfTwoValues";
 switch(Test)
 {
+    case "SumOfTwoValues":
+        SumOfTwoValues.RunProblem();
+        break;
+
     case "ValidParenthesis":
         ValidParenthesis.RunProblem();
         break;
