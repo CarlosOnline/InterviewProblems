@@ -1,21 +1,32 @@
 ﻿using InterviewProblems;
 
-const string Test = "MedianOfSortedArrays";
-switch(Test)
+internal class Program
 {
-    case "MedianOfSortedArrays":
-        MedianOfSortedArrays.RunProblem();
-        break;
+    private static void Main(string[] args)
+    {
+        var Test = args.FirstOrDefault() ?? "TrappingRainWater";
 
-    case "SumOfTwoValues":
-        SumOfTwoValues.RunProblem();
-        break;
+        switch (Test)
+        {
+            case "MedianOfSortedArrays":
+                MedianOfSortedArrays.RunProblem();
+                break;
 
-    case "ValidParenthesis":
-        ValidParenthesis.RunProblem();
-        break;
+            case "TrappingRainWater":
+                TrappingRainWater.RunProblem();
+                break;
 
-    case "LengthOfLongestSubstring":
-        LengthOfLongestSubstring.RunProblem();
-        break;
+            case "SumOfTwoValues":
+                SumOfTwoValues.RunProblem();
+                break;
+
+            case "ValidParenthesis":
+                ValidParenthesis.RunProblem();
+                break;
+
+            case "LengthOfLongestSubstring":
+                LengthOfLongestSubstring.RunProblem();
+                break;
+        }
+    }
 }
