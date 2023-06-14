@@ -1,8 +1,12 @@
 ﻿using InterviewProblems;
 
-const string Test = "SumOfTwoValues";
+const string Test = "MedianOfSortedArrays";
 switch(Test)
 {
+    case "MedianOfSortedArrays":
+        MedianOfSortedArrays.RunProblem();
+        break;
+
     case "SumOfTwoValues":
         SumOfTwoValues.RunProblem();
         break;
