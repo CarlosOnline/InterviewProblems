@@ -1,7 +1,14 @@
-﻿namespace InterviewProblems;
+// -----------------------------------------------------------------------
+// <copyright file="ValidParenthesis.cs" company="Joy Of Playing hf.">
+// Copyright (c) Joy Of Playing hf. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace InterviewProblems;
 
 internal class ValidParenthesis
 {
+    [InterviewProblem]
     public static void RunProblem()
     {
         var testCases = new Dictionary<string, bool>
@@ -39,7 +46,10 @@ internal class ValidParenthesis
 
     private static bool IsValidParenthesis(string input)
     {
-        if (string.IsNullOrWhiteSpace(input)) return false;
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return false;
+        }
 
         var stack = new Stack<char>();
 
@@ -101,7 +111,10 @@ internal class ValidParenthesis
 
     private static bool IsValidParenthesisOptimized(string input)
     {
-        if (string.IsNullOrWhiteSpace(input)) return false;
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return false;
+        }
 
         var stack = new Stack<char>();
 
@@ -142,7 +155,10 @@ internal class ValidParenthesis
 
     private static bool IsValidParenthesisUsingReplace(string input)
     {
-        if (string.IsNullOrWhiteSpace(input)) return false;
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return false;
+        }
 
         while (input.Contains("()") || input.Contains("[]") || input.Contains("{}"))
         {

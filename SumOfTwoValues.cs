@@ -1,7 +1,14 @@
-﻿namespace InterviewProblems;
+// -----------------------------------------------------------------------
+// <copyright file="SumOfTwoValues.cs" company="Joy Of Playing hf.">
+// Copyright (c) Joy Of Playing hf. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace InterviewProblems;
 
 internal class SumOfTwoValues
 {
+    [InterviewProblem]
     public static void RunProblem()
     {
         var testCases = new List<Tuple<int, int[]>>

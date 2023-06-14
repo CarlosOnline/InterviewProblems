@@ -1,4 +1,10 @@
-﻿namespace InterviewProblems;
+// -----------------------------------------------------------------------
+// <copyright file="LengthOfLongestSubstring.cs" company="Joy Of Playing hf.">
+// Copyright (c) Joy Of Playing hf. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace InterviewProblems;
 
 /// <summary>
 /// 3. Longest Substring Without Repeating Characters
@@ -7,6 +13,7 @@
 /// </summary>
 internal class LengthOfLongestSubstring
 {
+    [InterviewProblem]
     public static void RunProblem()
     {
         var testCases = new List<string>
@@ -23,7 +30,7 @@ internal class LengthOfLongestSubstring
 
         foreach (var testCase in testCases)
         {
-            var result = lengthOfLongestSubstring(testCase);
+            var result = CaculateLengthOfLongestSubstring(testCase);
             Console.WriteLine($"Input: {testCase} Longest: {result:N0}");
         }
     }
@@ -60,14 +67,14 @@ internal class LengthOfLongestSubstring
         return longestSubstring.Length;
     }
 
-    private static int lengthOfLongestSubstring(string input)
+    private static int CaculateLengthOfLongestSubstring(string input)
     {
         if (input.Length == 0)
         {
             return 0;
         }
 
-        int ans = 1;
+        var ans = 1;
         var set = new HashSet<char>();
         int left = 0, right = 0;
         var chLeft = input[left];
@@ -91,7 +98,7 @@ internal class LengthOfLongestSubstring
                 {
                     chRight = input[right];
                 }
-                int sz = set.Count;
+                var sz = set.Count;
                 ans = Math.Max(ans, sz);
             }
         }

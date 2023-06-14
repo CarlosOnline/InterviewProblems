@@ -1,7 +1,14 @@
-﻿namespace InterviewProblems;
+// -----------------------------------------------------------------------
+// <copyright file="MedianOfSortedArrays.cs" company="Joy Of Playing hf.">
+// Copyright (c) Joy Of Playing hf. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace InterviewProblems;
 
 internal class MedianOfSortedArrays
 {
+    [InterviewProblem]
     public static void RunProblem()
     {
         var testCases = new List<Tuple<double, int[], int[]>>

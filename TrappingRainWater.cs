@@ -1,7 +1,14 @@
-﻿namespace InterviewProblems;
+// -----------------------------------------------------------------------
+// <copyright file="TrappingRainWater.cs" company="Joy Of Playing hf.">
+// Copyright (c) Joy Of Playing hf. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace InterviewProblems;
 
 internal class TrappingRainWater
 {
+    [InterviewProblem]
     public static void RunProblem()
     {
         var testCases = new List<Tuple<int, int[]>>
@@ -42,7 +49,7 @@ internal class TrappingRainWater
             {
                 if (history.TryGetValue(currentHeight, out var position))
                 {
-                    var space = (idx - position) - 1;
+                    var space = idx - position - 1;
                     trapped += space;
 
                     history.Remove(currentHeight);
